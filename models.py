@@ -1,8 +1,8 @@
 import sqlalchemy as sq
 from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, DATE
 
 Base = declarative_base()
-
 
 
 class Shop(Base):
@@ -25,7 +25,7 @@ class Book(Base):
     __tablename__ = "book"
 
     id = sq.Column(sq.Integer, primary_key=True)
-    title = sq.Column(sq.Text, nullable=False)
+    title = sq.Column(sq.String, nullable=False)
     publisher_id = sq.Column(sq.Integer, sq.ForeignKey('publisher.id'), nullable=False)
 
     publisher = relationship(Publisher, backref="book")
@@ -54,7 +54,7 @@ class Sale(Base):
 
     id = sq.Column(sq.Integer, primary_key = True)
     price = sq.Column(sq.Integer, nullable = False)
-    data_sale = sq.Column(sq.Text, nullable= False )
+    data_sale = sq.Column(sq.DATE, nullable= False)
     count = sq.Column(sq.Integer, nullable = False)
     stock_id = sq.Column(sq.Integer, sq.ForeignKey('stock.id'), nullable= False)
 
